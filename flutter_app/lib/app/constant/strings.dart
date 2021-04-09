@@ -1,0 +1,1 @@
+final appName = "E-Merce";
