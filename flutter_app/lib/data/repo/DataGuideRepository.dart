@@ -13,8 +13,8 @@ class DataGuideRepository extends GuideRepository {
     List<GuideInfo> items = [];
 
     if (data['items'] != null) {
-      data['items'].map((v) {
-        items.add(new GuideInfo.fromJson(v));
+      data['items'].map((item) {
+        items.add(new GuideInfo.fromJson(item));
       });
     }
 
