@@ -25,7 +25,7 @@ class GuideController extends Controller {
 
   @override
   void onInitState() {
-    // TODO: implement onInitState
+    // ViewDidLoad / OnCreate
     super.onInitState();
   }
 
