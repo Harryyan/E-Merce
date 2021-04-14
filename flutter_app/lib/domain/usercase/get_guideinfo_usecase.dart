@@ -4,19 +4,19 @@ import 'package:flutter_app/domain/entity/GuideInfo.dart';
 import 'package:flutter_app/domain/repository/GuideRepository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class GetGuideUseCase extends UseCase<GetGuideUseCaseResponse, Object> {
+class GetGuideUseCase extends UseCase<GuideUseCaseResponse, Object> {
   final GuideRepository guideRepository;
 
   GetGuideUseCase(this.guideRepository);
 
   @override
-  Future<Stream<GetGuideUseCaseResponse>> buildUseCaseStream(
+  Future<Stream<GuideUseCaseResponse>> buildUseCaseStream(
       Object params) async {
-    final controller = StreamController<GetGuideUseCaseResponse>();
+    final controller = StreamController<GuideUseCaseResponse>();
     try {
       final guideItems = await guideRepository.getAll();
       // Trigger .OnNext
-      controller.add(GetGuideUseCaseResponse(guideItems));
+      controller.add(GuideUseCaseResponse(guideItems));
       logger.finest('GetUserUseCase successful.');
       controller.close();
     } catch (e) {
@@ -28,9 +28,9 @@ class GetGuideUseCase extends UseCase<GetGuideUseCaseResponse, Object> {
   }
 }
 
-/// Wrapping response inside an object makes it easier to change later
-class GetGuideUseCaseResponse {
+/// Create DTO folder later
+class GuideUseCaseResponse {
   final List<GuideInfo> items;
 
-  GetGuideUseCaseResponse(this.items);
+  GuideUseCaseResponse(this.items);
 }
