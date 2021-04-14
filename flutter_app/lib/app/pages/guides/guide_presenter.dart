@@ -4,18 +4,18 @@ import 'package:flutter_app/domain/usercase/get_guideinfo_usecase.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class GuidePresenter extends Presenter {
-  Function getUserOnNext;
-  Function getUserOnComplete;
-  Function getUserOnError;
+  Function getGuideOnNext;
+  Function getGuideOnComplete;
+  Function getGuideOnError;
 
   final GetGuideUseCase guideInfo;
 
   GuidePresenter(guideRepo) : guideInfo = GetGuideUseCase(guideRepo);
-  
+
   void getGuideInfo() {
-    guideInfo.execute(observer)
+    guideInfo.execute(_GuideUseCaseObserver(this), null);
   }
-  
+
   @override
   void dispose() {
     guideInfo.dispose();
@@ -24,22 +24,24 @@ class GuidePresenter extends Presenter {
 
 class _GuideUseCaseObserver extends Observer<GuideUseCaseResponse> {
   final GuidePresenter presenter;
+
   _GuideUseCaseObserver(this.presenter);
+
   @override
   void onComplete() {
-    assert(presenter.getUserOnComplete != null);
-    presenter.getUserOnComplete();
+    assert(presenter.getGuideOnComplete != null);
+    presenter.getGuideOnComplete();
   }
 
   @override
   void onError(e) {
-    assert(presenter.getUserOnError != null);
-    presenter.getUserOnError(e);
+    assert(presenter.getGuideOnError != null);
+    presenter.getGuideOnError(e);
   }
 
   @override
   void onNext(response) {
-    assert(presenter.getUserOnNext != null);
-    presenter.getUserOnNext(response.user);
+    assert(presenter.getGuideOnNext != null);
+    presenter.getGuideOnNext(response.items);
   }
 }
