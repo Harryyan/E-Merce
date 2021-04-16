@@ -13,8 +13,8 @@ class GuideController extends Controller {
 
   List<GuideInfo> items;
 
-  void getAll() async {
-    items = await presenter.getGuideInfo();
+  void getAll() {
+    presenter.getGuideInfo();
     print(items);
   }
 
