@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/app/pages/guides/guide_presenter.dart';
-import 'package:flutter_app/app/widgets/guide.dart';
 import 'package:flutter_app/domain/entity/GuideInfo.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -36,7 +34,7 @@ class GuideController extends Controller {
       ScaffoldMessenger.of(getContext())
           .showSnackBar(SnackBar(content: Text(e.message)));
 
-      _items = null;
+      _items = [];
       refreshUI();
     };
   }

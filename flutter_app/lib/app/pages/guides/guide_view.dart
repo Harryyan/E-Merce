@@ -35,7 +35,7 @@ class _GuidePagesState extends ViewState<GuidePages, GuideController> {
                           controller.currentPage = value;
                         });
                       },
-                      itemCount: 3,
+                      itemCount: controller.items.length,
                       itemBuilder: (context, index) => Guide(
                         image: controller.items[index].imgUrl,
                         text: controller.items[index].message,

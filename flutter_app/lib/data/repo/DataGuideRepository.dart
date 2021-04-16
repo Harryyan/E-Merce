@@ -10,7 +10,7 @@ class DataGuideRepository extends GuideRepository {
   Future<List<GuideInfo>> getAll() async {
     final String rawData = await rootBundle.loadString(welcomeFilePath);
     final data = await json.decode(rawData);
-    List<GuideInfo> items = [];f
+    List<GuideInfo> items = [];
 
     if (data['items'] != null) {
       data['items'].forEach((item) => items.add(new GuideInfo.fromJson(item)));
