@@ -16,7 +16,6 @@ class GuidePages extends View {
 }
 
 class _GuidePagesState extends ViewState<GuidePages, GuideController> {
-  // TODO: Pass repo here to controller
   _GuidePagesState() : super(GuideController(DataGuideRepository()));
 
   @override

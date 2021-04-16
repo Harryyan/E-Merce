@@ -1,27 +1,47 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/app/pages/guides/guide_presenter.dart';
+import 'package:flutter_app/app/widgets/guide.dart';
 import 'package:flutter_app/domain/entity/GuideInfo.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class GuideController extends Controller {
   int currentPage;
-  final GuidePresenter presenter;
+  GuidePresenter presenter;
 
   GuideController(guideRepo)
       : presenter = GuidePresenter(guideRepo),
         super();
 
-  List<GuideInfo> items;
+  List<GuideInfo> _items;
 
-  void getAll() {
+  List<GuideInfo> get items => _items;
+
+  @override
+  void initController(GlobalKey<State<StatefulWidget>> key) {
+    super.initController(key);
+
     presenter.getGuideInfo();
-    print(items);
   }
 
   @override
   void initListeners() {
-    getAll();
+    presenter.getGuideOnNext = (List<GuideInfo> items) {
+      _items = items;
+
+      refreshUI();
+    };
+
+    presenter.getGuideOnError = (e) {
+      ScaffoldMessenger.of(getContext())
+          .showSnackBar(SnackBar(content: Text(e.message)));
+
+      _items = null;
+      refreshUI();
+    };
   }
+
+  void getGuideInfo() => presenter.getGuideInfo();
 
   @override
   void onInitState() {

@@ -1,5 +1,3 @@
-import 'package:flutter_app/domain/entity/GuideInfo.dart';
-import 'package:flutter_app/domain/repository/GuideRepository.dart';
 import 'package:flutter_app/domain/usercase/get_guideinfo_usecase.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 

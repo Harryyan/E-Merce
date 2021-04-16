@@ -13,9 +13,9 @@ class DataGuideRepository extends GuideRepository {
     List<GuideInfo> items = [];
 
     if (data['items'] != null) {
-      data['items'].map((item) {
-        items.add(new GuideInfo.fromJson(item));
-      });
+      var result = data['items'];
+
+      data['items'].forEach((item) => items.add(new GuideInfo.fromJson(item)));
     }
 
     return items;
