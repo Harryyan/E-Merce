@@ -3,6 +3,7 @@ import 'package:emerce_components/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/constant/animation.dart';
 import 'package:flutter_app/app/pages/guides/guide_controller.dart';
+import 'package:flutter_app/app/widgets/Loader.dart';
 import 'package:flutter_app/app/widgets/guide.dart';
 import 'package:flutter_app/data/helpers/full_screen_size.dart';
 import 'package:flutter_app/data/repo/DataGuideRepository.dart';
@@ -29,18 +30,24 @@ class _GuidePagesState extends ViewState<GuidePages, GuideController> {
                   flex: 3,
                   child: ControlledWidgetBuilder<GuideController>(
                       builder: (context, controller) {
-                    return PageView.builder(
-                      onPageChanged: (value) {
-                        setState(() {
-                          controller.currentPage = value;
-                        });
-                      },
-                      itemCount: controller.items.length,
-                      itemBuilder: (context, index) => Guide(
-                        image: controller.items[index].imgUrl,
-                        text: controller.items[index].message,
-                      ),
-                    );
+                    if (controller.items != null) {
+                      return PageView.builder(
+                        onPageChanged: (value) {
+                          setState(() {
+                            controller.currentPage = value;
+                          });
+                        },
+                        itemCount: controller.items.length,
+                        itemBuilder: (context, index) => Guide(
+                          image: controller.items[index].imgUrl,
+                          text: controller.items[index].message,
+                        ),
+                      );
+                    } else {
+                      return Loader(
+                        radius: 15,
+                      );
+                    }
                   }),
                 ),
                 Expanded(
