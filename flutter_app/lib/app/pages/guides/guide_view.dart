@@ -3,7 +3,7 @@ import 'package:emerce_components/constant/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/constant/animation.dart';
 import 'package:flutter_app/app/pages/guides/guide_controller.dart';
-import 'package:flutter_app/app/widgets/Loader.dart';
+import 'package:flutter_app/app/widgets/loader.dart';
 import 'package:flutter_app/app/widgets/guide.dart';
 import 'package:flutter_app/data/helpers/full_screen_size.dart';
 import 'package:flutter_app/data/repo/DataGuideRepository.dart';

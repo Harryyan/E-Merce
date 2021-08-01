@@ -9,6 +9,7 @@ class FullSizeConfig {
   static FullSizeConfig _instance;
 
   factory FullSizeConfig(BuildContext context) => _getInstance(context);
+
   static FullSizeConfig get instance => _instance;
 
   FullSizeConfig._(BuildContext context) {

@@ -12,8 +12,6 @@ class GuidePresenter extends Presenter {
 
   void getGuideInfo() {
     guideInfo.execute(_GuideUseCaseObserver(this), null);
-
-    print("ff");
   }
 
   @override
